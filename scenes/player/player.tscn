@@ -6,9 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://dgp8mncjijqnk" path="res://scenes/player/input_component.tscn" id="4_lvxji"]
 [ext_resource type="PackedScene" uid="uid://chj44sqmhuemc" path="res://scenes/player/movements_component.tscn" id="5_p47bc"]
 [ext_resource type="PackedScene" uid="uid://6p0kq4lj037i" path="res://scenes/player/jump_component.tscn" id="6_75vfm"]
+[ext_resource type="PackedScene" uid="uid://ch3eolnqgpawb" path="res://scenes/player/dash_component.tscn" id="7_0owmy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_in4dw"]
-size = Vector2(9.083334, 18)
+size = Vector2(9, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0vvub"]
+size = Vector2(54, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("2_75vfm")
@@ -58,10 +62,6 @@ region = Rect2(64, 0, 32, 32)
 atlas = ExtResource("2_75vfm")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3vyb7"]
-atlas = ExtResource("2_75vfm")
-region = Rect2(0, 64, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1ej7"]
 atlas = ExtResource("2_75vfm")
 region = Rect2(0, 32, 32, 32)
@@ -92,6 +92,14 @@ animations = [{
 "loop": 0,
 "name": &"attack",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqkch")
+}],
+"loop": 1,
+"name": &"dash",
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -129,11 +137,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3vyb7")
+"texture": SubResource("AtlasTexture_f1ej7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8ls1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfm1y")
 }],
-"loop": 2,
+"loop": 1,
 "name": &"jump",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -150,37 +164,45 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player2" type="CharacterBody2D" unique_id=600067458 node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "jump_component")]
+[node name="Player" type="CharacterBody2D" unique_id=600067458 node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "jump_component", "dash_component")]
 script = ExtResource("1_gmlin")
 gravity_component = NodePath("GravityComponent")
 input_component = NodePath("InputComponent")
 movement_component = NodePath("MovementsComponent")
 jump_component = NodePath("JumpComponent")
+dash_component = NodePath("DashComponent")
 
-[node name="Collision" type="CollisionShape2D" parent="." unique_id=930561377]
-position = Vector2(0, -13.374998)
+[node name="CollisionNormal" type="CollisionShape2D" parent="." unique_id=930561377]
+position = Vector2(-1.092784e-07, -13.5)
 rotation = 1.5707964
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_in4dw")
+
+[node name="CollisionDash" type="CollisionShape2D" parent="." unique_id=479640162]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_0vvub")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1775386499]
 texture_filter = 1
 position = Vector2(0, -48)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_qek5x")
-animation = &"died"
+animation = &"dash"
 
 [node name="GravityComponent" parent="." unique_id=1798116523 instance=ExtResource("2_gmlin")]
-gravity = 1500.0
 
 [node name="InputComponent" parent="." unique_id=1303455773 instance=ExtResource("4_lvxji")]
 
 [node name="MovementsComponent" parent="." unique_id=1252331401 instance=ExtResource("5_p47bc")]
 speed = 300.0
 ground_accel_speed = 18.0
-ground_decel_speed = 24.0
-air_accel_speed = 30.0
-air_decel_speed = 9.0
+ground_decel_speed = 20.0
+air_accel_speed = 24.0
+air_decel_speed = 16.0
 
 [node name="JumpComponent" parent="." unique_id=839944093 instance=ExtResource("6_75vfm")]
 jump_velocity = -500.0
+
+[node name="DashComponent" parent="." unique_id=1016776761 node_paths=PackedStringArray("collision_normal", "collision_dash") instance=ExtResource("7_0owmy")]
+collision_normal = NodePath("../CollisionNormal")
+collision_dash = NodePath("../CollisionDash")

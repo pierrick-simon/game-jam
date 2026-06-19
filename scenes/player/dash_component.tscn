@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ch3eolnqgpawb"]
+
+[ext_resource type="Script" uid="uid://clrnylvehlq5x" path="res://scripts/player/dash_component.gd" id="1_5g0d5"]
+
+[node name="DashComponent" type="Node" unique_id=1016776761 node_paths=PackedStringArray("dash_timer", "dash_cooldown")]
+script = ExtResource("1_5g0d5")
+dash_timer = NodePath("DashTimer")
+dash_cooldown = NodePath("DashCooldown")
+
+[node name="DashTimer" type="Timer" parent="." unique_id=533735890]
+wait_time = 0.07
+one_shot = true
+
+[node name="DashCooldown" type="Timer" parent="." unique_id=2005052101]
+one_shot = true
+
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
