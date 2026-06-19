@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cuukld06u77hw"]
+
+[ext_resource type="Texture2D" uid="uid://dp75p0jvp1yht" path="res://assets/tmpcrab.png" id="1_rpqav"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kyqiw"]
+size = Vector2(18, 9)
+
+[node name="Player" type="CharacterBody2D" unique_id=600067458]
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1320099860]
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_kyqiw")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=857025217]
+texture_filter = 1
+scale = Vector2(10, 10)
+texture = ExtResource("1_rpqav")
