@@ -13,14 +13,18 @@ func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(self, delta)
 	movement_component.handle_horizontal_movement(self, direction)
 	jump_component.handle_jump(self, input_component.get_jump_input(), input_component.get_jump_input_released())
-	update_animation(direction)
+	update_animation(velocity.x)
 	move_and_slide()
 
-func update_animation(direction):
+func update_animation(direction: float):
+	if direction >  0:
+		animated_sprite.flip_h = false;
+	else:
+		animated_sprite.flip_h = true;
 	if is_on_floor():
-		if direction == 0:
-			animated_sprite.play("idle")
-		else:
+		if direction != 0:
 			animated_sprite.play("run")
+		else:
+			animated_sprite.play("idle")
 	else:
 		animated_sprite.play("jump")

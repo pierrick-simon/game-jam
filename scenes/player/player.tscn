@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://chj44sqmhuemc" path="res://scenes/player/movements_component.tscn" id="5_p47bc"]
 [ext_resource type="PackedScene" uid="uid://6p0kq4lj037i" path="res://scenes/player/jump_component.tscn" id="6_75vfm"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0owmy"]
-size = Vector2(18, 9)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_in4dw"]
+size = Vector2(4.5, 8.999999)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("2_75vfm")
@@ -157,21 +157,30 @@ input_component = NodePath("InputComponent")
 movement_component = NodePath("MovementsComponent")
 jump_component = NodePath("JumpComponent")
 
-[node name="Collision" type="CollisionShape2D" parent="." unique_id=591308749]
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=930561377]
+position = Vector2(1.8854928e-06, -22.499996)
+rotation = 1.5707964
 scale = Vector2(10, 10)
-shape = SubResource("RectangleShape2D_0owmy")
+shape = SubResource("RectangleShape2D_in4dw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1775386499]
 texture_filter = 1
-position = Vector2(-7.1054274e-15, -111.99999)
-scale = Vector2(10, 10)
+position = Vector2(0, -80)
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_qek5x")
 animation = &"died"
 
 [node name="GravityComponent" parent="." unique_id=1798116523 instance=ExtResource("2_gmlin")]
+gravity = 1500.0
 
 [node name="InputComponent" parent="." unique_id=1303455773 instance=ExtResource("4_lvxji")]
 
 [node name="MovementsComponent" parent="." unique_id=1252331401 instance=ExtResource("5_p47bc")]
+speed = 300.0
+ground_accel_speed = 18.0
+ground_decel_speed = 24.0
+air_accel_speed = 30.0
+air_decel_speed = 9.0
 
 [node name="JumpComponent" parent="." unique_id=839944093 instance=ExtResource("6_75vfm")]
+jump_velocity = -500.0
