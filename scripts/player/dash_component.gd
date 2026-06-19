@@ -14,7 +14,7 @@ var timeout: bool = false
 var dash_direction: float
 
 func handle_dash(body: CharacterBody2D, dash_pressed: bool, direction: float):
-	if dash_pressed and dash_timer.is_stopped() and dash_cooldown.is_stopped():
+	if dash_pressed and dash_timer.is_stopped() and dash_cooldown.is_stopped() and (not body.is_on_wall() or sign(body.get_wall_normal().x) == sign(direction)):
 		dash_timer.start()
 		dash_direction = direction if direction else 1
 
