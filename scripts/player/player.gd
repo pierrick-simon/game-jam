@@ -12,7 +12,7 @@ func _physics_process(delta: float) -> void:
 	var direction: float = input_component.input_horizontal
 	gravity_component.handle_gravity(self, delta)
 	movement_component.handle_horizontal_movement(self, direction)
-	jump_component.handle_jump(self, input_component.get_jump_input(), input_component.get_jump_input_released())
+	jump_component.handle_jump(self, input_component.get_jump_input())
 	update_animation(velocity.x)
 	move_and_slide()
 

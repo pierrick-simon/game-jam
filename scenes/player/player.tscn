@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://6p0kq4lj037i" path="res://scenes/player/jump_component.tscn" id="6_75vfm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_in4dw"]
-size = Vector2(4.5, 8.999999)
+size = Vector2(9.083334, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("2_75vfm")
@@ -158,15 +158,15 @@ movement_component = NodePath("MovementsComponent")
 jump_component = NodePath("JumpComponent")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=930561377]
-position = Vector2(1.8854928e-06, -22.499996)
+position = Vector2(0, -13.374998)
 rotation = 1.5707964
-scale = Vector2(10, 10)
+scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_in4dw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1775386499]
 texture_filter = 1
-position = Vector2(0, -80)
-scale = Vector2(5, 5)
+position = Vector2(0, -48)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_qek5x")
 animation = &"died"
 
