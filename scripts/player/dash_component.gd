@@ -19,15 +19,15 @@ func handle_dash(body: CharacterBody2D, dash_pressed: bool, direction: float):
 		dash_direction = direction if direction else 1
 
 	if timeout:
-		collision_normal.disabled = false
-		collision_dash.disabled = true
 		body.velocity.x /= 3.5
 		dash_cooldown.start()
 		timeout = false
 
+	if dash_timer.time_left == 0:
+		if not _is_overlapping_if_enabled(body):
+			collision_normal.disabled = false
 	if dash_timer.time_left != 0:
 		collision_normal.disabled = true
-		collision_dash.disabled = false
 		body.velocity.x = dash_speed if dash_direction > 0 else -dash_speed
 		if body.is_on_wall():
 			dash_direction = -dash_direction
@@ -40,3 +40,15 @@ func is_dashing():
 
 func _on_dash_timer_timeout() -> void:
 	timeout = true
+
+func _is_overlapping_if_enabled(body: CharacterBody2D) -> bool:
+	var space_state = body.get_world_2d().direct_space_state
+	var shape = collision_normal.shape
+	var transform = body.global_transform * collision_normal.transform
+	var query = PhysicsShapeQueryParameters2D.new()
+	query.shape = shape
+	query.transform = transform
+	query.collision_mask = body.collision_mask
+	query.exclude = [body.get_rid()]
+	var results = space_state.intersect_shape(query)
+	return results.size() > 0

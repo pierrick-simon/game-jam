@@ -24,7 +24,7 @@ func handle_jump(body: CharacterBody2D, want_to_jump: bool, is_dashing: bool) ->
 func handle_jump_buffer(body: CharacterBody2D, want_to_jump: bool, is_dashing: bool, was_dashing: bool) -> void:
 	if want_to_jump and not body.is_on_floor():
 		if is_dashing:
-			jump_buffer_timer.start(jump_buffer_timer.wait_time / 6)
+			jump_buffer_timer.start(jump_buffer_timer.wait_time / 4)
 		else:
 			jump_buffer_timer.start()
 	if (body.is_on_floor() or (not is_dashing and was_dashing)) and not jump_buffer_timer.is_stopped():
