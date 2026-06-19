@@ -10,7 +10,7 @@ extends Node
 var is_going_up: bool = false;
 
 func handle_jump(body: CharacterBody2D, want_to_jump: bool, jump_released: bool) -> void:
-	print(jump_buffer_timer.time_left)
+
 	if want_to_jump and body.is_on_floor():
 		jump(body)
 	
