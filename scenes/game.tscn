@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dwdfmeg55kceu" path="res://assets/tilemap.png" id="3_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://i0c3k2pqkuop" path="res://assets/tilemap_new_softy_sand.png" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://daw4tgkgg0iko" path="res://scenes/end_npc.tscn" id="5_iywne"]
+[ext_resource type="Script" uid="uid://dy3j2p8jvq3v3" path="res://scripts/canvas_layer.gd" id="7_u5sy4"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_in4dw"]
 a = Vector2(1152, 648)
@@ -782,6 +783,7 @@ sources/1 = SubResource("TileSetAtlasSource_iywne")
 
 [node name="Level" type="Node2D" parent="." unique_id=1275058110]
 script = ExtResource("1_p57ef")
+color = Color(1, 0.8666667, 0.5137255, 1)
 
 [node name="Background" type="Sprite2D" parent="Level" unique_id=1477154323]
 z_index = -4096
@@ -805,6 +807,13 @@ tile_set = SubResource("TileSet_y41eq")
 [node name="EndNPC" parent="Level" unique_id=736862743 instance=ExtResource("5_iywne")]
 unique_name_in_owner = true
 position = Vector2(927, 634)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Level" unique_id=744167029]
+layer = 10
+
+[node name="CircleDrawer" type="Node2D" parent="Level/CanvasLayer" unique_id=1123965993]
+unique_name_in_owner = true
+script = ExtResource("7_u5sy4")
 
 [connection signal="has_entered_finish" from="Level/EndNPC" to="Level" method="_on_end_npc_has_entered_finish"]
 [connection signal="has_entered_finish" from="Level/EndNPC" to="Level/Player" method="_on_end_npc_has_entered_finish"]
