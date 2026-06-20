@@ -22,31 +22,13 @@ extends Node2D
 
 var _tide_timer := Timer.new()
 
-
 var _screen_size: Vector2
 
-func _evalute_pos(t: float) -> void:
-	var result_y: float = -_y_expression.execute([t])
-	position.y = result_y * _screen_size.y
-	var result_x: float = _x_expression.execute([t])
-	position.x = result_x
+signal tide_going_up
 
-func moveTideUp() -> void:
-	print("Going up")
-	var tween := create_tween()
-	tween.tween_method(_evalute_pos, 0.0, 10.0, tide_duration)
-	tide_up = true
+signal tide_going_down
 
-func moveTideDown() -> void:
-	print("Moving down")
-	var tween := create_tween()
-	tween.tween_method(_evalute_pos, 10.0, 0.0, tide_duration)
-	tide_up = false
-
-func _getNewTideDelay() -> float:
-	return tide_duration + randf_range(min_time_between_tide, max_time_between_tide)
-	
-func moveTide() -> void:
+func switchTide() -> void:
 	_tide_timer.start(_getNewTideDelay())
 	if !is_random:
 		return
@@ -55,16 +37,39 @@ func moveTide() -> void:
 	else:
 		moveTideUp()
 
+func moveTideUp() -> void:
+	tide_going_up.emit()
+	var tween := create_tween()
+	tween.tween_method(_evaluate_pose, 0.0, 10.0, tide_duration)
+	tide_up = true
+
+func moveTideDown() -> void:
+	tide_going_down.emit()
+	var tween := create_tween()
+	tween.tween_method(_evaluate_pose, 10.0, 0.0, tide_duration)
+
+func get_underwater_y_pos() -> float:
+	return wave.global_position.y
+	
+func _evaluate_pose(t: float) -> void:
+	var result_y: float = -_y_expression.execute([t])
+	position.y = result_y * _screen_size.y
+	var result_x: float = _x_expression.execute([t])
+	position.x = result_x
+	tide_up = false
+
+func _getNewTideDelay() -> float:
+	return tide_duration + randf_range(min_time_between_tide, max_time_between_tide)
+	
 func _update_screen_size() -> void:
 	_screen_size = get_viewport().get_visible_rect().size
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_update_screen_size()
 	get_viewport().size_changed.connect(_update_screen_size)
 	
 	add_child(_tide_timer)
-	_tide_timer.timeout.connect(moveTide)
+	_tide_timer.timeout.connect(switchTide)
 	_tide_timer.start(_getNewTideDelay())
 	
 	var err := _y_expression.parse(y_expression_string, ["t"])
