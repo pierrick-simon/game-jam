@@ -2,12 +2,20 @@
 
 [ext_resource type="Texture2D" uid="uid://doem800ywxsa5" path="res://assets/background.png" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://baxgmxm4ryk5u" path="res://scripts/level.gd" id="1_p57ef"]
+[ext_resource type="Shader" uid="uid://c8xo7vpeavqlx" path="res://assets/tide/Tide.gdshader" id="2_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://si18mgqm0vto" path="res://scenes/player/player.tscn" id="2_yqjtg"]
+[ext_resource type="Texture2D" uid="uid://cgahmchqehgs7" path="res://assets/backgroundAboveTide.png" id="3_gee14"]
 [ext_resource type="Texture2D" uid="uid://dwdfmeg55kceu" path="res://assets/tilemap.png" id="3_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://i0c3k2pqkuop" path="res://assets/tilemap_new_softy_sand.png" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://daw4tgkgg0iko" path="res://scenes/end_npc.tscn" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://dtltucygc3kje" path="res://scenes/tide/TideController.tscn" id="6_iywne"]
 [ext_resource type="Script" uid="uid://dy3j2p8jvq3v3" path="res://scripts/canvas_layer.gd" id="7_u5sy4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gee14"]
+shader = ExtResource("2_0tnpc")
+shader_parameter/mask_position = Vector2(0, 0)
+shader_parameter/mask_size = Vector2(0, 0)
+shader_parameter/screen_size = Vector2(0, 0)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_in4dw"]
 a = Vector2(1152, 648)
@@ -786,9 +794,17 @@ sources/1 = SubResource("TileSetAtlasSource_iywne")
 script = ExtResource("1_p57ef")
 color = Color(1, 0.8666667, 0.5137255, 1)
 
+[node name="Background2" type="Sprite2D" parent="Level" unique_id=367785055]
+z_index = -4096
+texture_filter = 1
+position = Vector2(576.182, 323.863)
+scale = Vector2(5.758177, 5.758178)
+texture = ExtResource("3_gee14")
+
 [node name="Background" type="Sprite2D" parent="Level" unique_id=1477154323]
 z_index = -4096
 texture_filter = 1
+material = SubResource("ShaderMaterial_gee14")
 position = Vector2(576.1907, 322.99997)
 scale = Vector2(1.7164947, 1.7164948)
 texture = ExtResource("1_ebmjs")
@@ -809,7 +825,9 @@ tile_set = SubResource("TileSet_y41eq")
 unique_name_in_owner = true
 position = Vector2(927, 634)
 
-[node name="TideController" parent="Level" unique_id=1799266707 instance=ExtResource("6_iywne")]
+[node name="TideController" parent="Level" unique_id=1799266707 node_paths=PackedStringArray("underwaterBackground") instance=ExtResource("6_iywne")]
+unique_name_in_owner = true
+underwaterBackground = NodePath("../Background")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Level" unique_id=744167029]
 layer = 10

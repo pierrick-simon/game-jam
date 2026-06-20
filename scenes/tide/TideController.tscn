@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dtltucygc3kje"]
+
+[ext_resource type="Script" uid="uid://dv3gcvgevnfk1" path="res://scripts/tide/tide_controller.gd" id="1_60o0i"]
+[ext_resource type="Texture2D" uid="uid://cl5xwowsxv7e7" path="res://assets/tide.png" id="2_60o0i"]
+
+[node name="TideController" type="Node2D" unique_id=1799266707]
+script = ExtResource("1_60o0i")
+
+[node name="Wave" type="Sprite2D" parent="." unique_id=1280319051]
+texture_filter = 1
+position = Vector2(-91, 648)
+scale = Vector2(5, 5)
+texture = ExtResource("2_60o0i")
+centered = false
