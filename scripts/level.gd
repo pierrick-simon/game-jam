@@ -12,6 +12,7 @@ var rad_incr: float = 1500.0
 @export var color: Color
 
 signal can_start
+signal end_level
 
 func _process(delta: float) -> void:
 	if rad == 0:
@@ -25,4 +26,8 @@ func _process(delta: float) -> void:
 func _on_end_npc_has_entered_finish() -> void:
 	var star_anim = star_anim_scene.instantiate()
 	star_anim.position = Vector2((player.position.x + end_npc.position.x) / 2, end_npc.position.y - 60)
+	star_anim.end_level.connect(_end_level_anim)
 	add_child(star_anim)
+
+func _end_level_anim() -> void:
+	emit_signal("end_level")

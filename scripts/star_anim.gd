@@ -9,8 +9,12 @@ var rad_incr: float = 1500.0
 @export_subgroup("Settings")
 @export var color: Color
 
+signal end_level
+
 func _process(delta: float) -> void:
 	if rad > 1500:
+		emit_signal("end_level")
+		queue_free()
 		return
 	if finished:
 		animated_sprite.visible = false
