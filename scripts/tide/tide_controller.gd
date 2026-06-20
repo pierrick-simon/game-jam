@@ -7,9 +7,9 @@ extends Node2D
 @export var underwater_background: Sprite2D
 
 @export_subgroup("Random tide settings")
-@export var min_time_between_tide: float = 10
-@export var max_time_between_tide: float = 15
-@export var tide_duration: float = 10
+@export var min_time_between_tide: float = 10.0
+@export var max_time_between_tide: float = 15.0
+@export var tide_duration: float = 10.0
 
 @export_subgroup("Wave movement expressions")
 @export var y_expression_string: String = "(sin(t * 4) * 0.1 + 0.3 * t) / 2.7"
@@ -85,9 +85,9 @@ func _ready() -> void:
 func _process(_delta):
 	var mat: ShaderMaterial = underwater_background.material as ShaderMaterial
 
-	mat.set_shader_parameter("mask_texture", wave.texture)
+	mat.set_shader_parameter(&"mask_texture", wave.texture)
 
-	mat.set_shader_parameter("mask_position", wave.global_position)
-	mat.set_shader_parameter("mask_size", wave.texture.get_size() * wave.scale)
+	mat.set_shader_parameter(&"mask_position", wave.global_position)
+	mat.set_shader_parameter(&"mask_size", wave.texture.get_size() * wave.scale)
 
-	mat.set_shader_parameter("screen_size", _screen_size)
+	mat.set_shader_parameter(&"screen_size", _screen_size)
