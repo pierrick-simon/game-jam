@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cl5xwowsxv7e7"
-path="res://.godot/imported/tide.png-b2bcbfc7f2ad9c9c895a1ef75be9a528.ctex"
+path="res://.godot/imported/tide.png-2157fb26ef1aa26d552511087f2628ae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tide.png"
-dest_files=["res://.godot/imported/tide.png-b2bcbfc7f2ad9c9c895a1ef75be9a528.ctex"]
+source_file="res://assets/tide/tide.png"
+dest_files=["res://.godot/imported/tide.png-2157fb26ef1aa26d552511087f2628ae.ctex"]
 
 [params]
 

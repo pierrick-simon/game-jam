@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4yhc7hs1c8s1"
-path="res://.godot/imported/underWaterEffect.png-6c3999755c3e6a58b13615d3311653ce.ctex"
+uid="uid://bb35wvfaxkn0m"
+path="res://.godot/imported/bubble.png-6f3074c3c7c4cf523d43451221720c75.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/underWaterEffect.png"
-dest_files=["res://.godot/imported/underWaterEffect.png-6c3999755c3e6a58b13615d3311653ce.ctex"]
+source_file="res://assets/tide/bubble.png"
+dest_files=["res://.godot/imported/bubble.png-6f3074c3c7c4cf523d43451221720c75.ctex"]
 
 [params]
 
