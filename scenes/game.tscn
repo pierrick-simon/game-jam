@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dwdfmeg55kceu" path="res://assets/tilemap.png" id="3_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://i0c3k2pqkuop" path="res://assets/tilemap_new_softy_sand.png" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://daw4tgkgg0iko" path="res://scenes/end_npc.tscn" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://dtltucygc3kje" path="res://scenes/tide/TideController.tscn" id="6_iywne"]
 [ext_resource type="Script" uid="uid://dy3j2p8jvq3v3" path="res://scripts/canvas_layer.gd" id="7_u5sy4"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_in4dw"]
@@ -807,6 +808,8 @@ tile_set = SubResource("TileSet_y41eq")
 [node name="EndNPC" parent="Level" unique_id=736862743 instance=ExtResource("5_iywne")]
 unique_name_in_owner = true
 position = Vector2(927, 634)
+
+[node name="TideController" parent="Level" unique_id=1799266707 instance=ExtResource("6_iywne")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Level" unique_id=744167029]
 layer = 10

@@ -1,0 +1,252 @@
+[gd_scene format=3 uid="uid://bqgawqs8arl6v"]
+
+[ext_resource type="Texture2D" uid="uid://cl5xwowsxv7e7" path="res://assets/tide.png" id="1_m4fp5"]
+
+[sub_resource type="GDScript" id="GDScript_jgmcy"]
+script/source = "class_name Tide
+extends Node
+
+
+@export_subgroup(\"Timing\")
+
+@export var min_time_till_tide: float = 10.0
+@export var max_time_till_tide: float = 30.0
+
+
+@export_subgroup(\"Wave Settings\")
+
+@export var tide_scene: PackedScene
+@export var tide_stages: Array[TideStage]
+
+@export var spawn_y: float = 350.0
+
+var screen_size: Vector2
+var is_tide_up := false
+
+var tide_timer: Timer
+var waves: Array[Wave] = []
+
+
+func _ready() -> void:
+	assert(tide_scene != null, \"Tide scene must be assigned.\")
+
+	update_screen_size()
+	get_viewport().size_changed.connect(update_screen_size)
+
+	_sort_stages()
+
+	_create_timer()
+	_create_waves()
+
+	tide_timer.start(_get_random_tide_time())
+
+
+func update_screen_size() -> void:
+	screen_size = get_viewport().get_visible_rect().size
+
+
+func _sort_stages() -> void:
+	tide_stages.sort_custom(
+		func(a: TideStage, b: TideStage) -> bool:
+			return a.coverage < b.coverage
+	)
+
+
+func _create_timer() -> void:
+	tide_timer = Timer.new()
+	tide_timer.one_shot = true
+
+	add_child(tide_timer)
+
+	tide_timer.timeout.connect(_on_tide_timeout)
+
+
+func _create_waves() -> void:
+	for _stage in tide_stages:
+		var wave := tide_scene.instantiate() as Wave
+
+		assert(
+			wave != null,
+			\"Tide scene root must inherit from Wave.\"
+		)
+
+		add_child(wave)
+
+		wave.initialize(spawn_y)
+
+		waves.append(wave)
+
+
+func _on_tide_timeout() -> void:
+	toggle_tide()
+	tide_timer.start(_get_random_tide_time())
+
+
+func _get_random_tide_time() -> float:
+	return randf_range(
+		min_time_till_tide,
+		max_time_till_tide
+	)
+
+
+func toggle_tide() -> void:
+	if is_tide_up:
+		move_tide_down()
+	else:
+		move_tide_up()
+
+
+func move_tide_up() -> void:
+	for i in tide_stages.size():
+		var stage := tide_stages[i]
+		var wave := waves[i]
+		
+		var tween := wave.raise_to_height(
+			screen_size,
+			tide_stages[i-1].coverage if i != 0 else 0.0,
+			stage.coverage,
+			stage.duration
+		)
+		
+		await tween.finished
+
+	is_tide_up = true
+
+
+func move_tide_down() -> void:
+	for i in waves.size():
+		var wave := waves[i]
+
+		var duration := (
+			tide_stages[i].duration
+			if i < tide_stages.size()
+			else 2.0
+		)
+
+		wave.lower(
+			duration
+		)
+
+	is_tide_up = false
+
+#TODO: When above 0.5, choose other sprite"
+
+[sub_resource type="GDScript" id="GDScript_c7lcu"]
+script/source = "class_name Wave
+extends Node2D
+
+@export var sprite: Sprite2D
+
+var spawn_y: float
+
+
+func initialize(start_y: float) -> void:
+	spawn_y = start_y
+
+	scale.y = 0
+	position.y = spawn_y
+
+
+func raise_to_height(
+	screen_size: Vector2,
+	prev_coverage: float,
+	coverage: float,
+	duration: float
+) -> Tween:
+	if sprite == null or sprite.texture == null:
+		push_error(\"Wave requires a Sprite2D with a texture.\")
+		return
+
+	var target_height := screen_size.y * coverage
+
+	var target_y := (
+		screen_size.y -
+		target_height
+	)
+
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+
+	tween.parallel().tween_property(
+		self,
+		\"scale:y\",
+		coverage - prev_coverage,
+		duration
+	)
+
+	tween.parallel().tween_property(
+		self,
+		\"position:y\",
+		target_y,
+		duration
+	)
+	
+	return tween
+
+
+func lower(
+	duration: float
+) -> void:
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+
+	tween.parallel().tween_property(
+		self,
+		\"scale:y\",
+		0.0,
+		duration
+	)
+
+	tween.parallel().tween_property(
+		self,
+		\"position:y\",
+		spawn_y,
+		duration
+	)
+"
+
+[sub_resource type="PackedScene" id="PackedScene_uwcg5"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array()],
+"names": PackedStringArray("Tide", "Node2D", "script", "sprite", "Sprite2D", "Sprite2D", "z_index", "position", "scale", "texture"),
+"node_count": 2,
+"node_ids": PackedInt32Array(80466284, 55042349),
+"node_paths": [NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 2, 2, 0, 1073741827, 1, 0, 1073741824, 0, 5, 4, -1, 4, 6, 2, 7, 3, 8, 4, 9, 5, 0),
+"variants": [SubResource("GDScript_c7lcu"), NodePath("Sprite2D"), 1, Vector2(576, 324), Vector2(2.451064, 2.4000003), ExtResource("1_m4fp5")],
+"version": 3
+}
+
+[sub_resource type="GDScript" id="GDScript_cjekg"]
+script/source = "class_name TideStage
+extends Resource
+
+@export_range(0.0, 1.0)
+var coverage: float = 0.25
+
+@export var duration: float = 3.0
+"
+
+[sub_resource type="Resource" id="Resource_8itxv"]
+script = SubResource("GDScript_cjekg")
+metadata/_custom_type_script = "uid://c0oh4po7bboqv"
+
+[sub_resource type="Resource" id="Resource_uwcg5"]
+script = SubResource("GDScript_cjekg")
+coverage = 0.75
+metadata/_custom_type_script = "uid://c0oh4po7bboqv"
+
+[sub_resource type="Resource" id="Resource_cjekg"]
+script = SubResource("GDScript_cjekg")
+coverage = 1.0
+metadata/_custom_type_script = "uid://c0oh4po7bboqv"
+
+[node name="Tide" type="Node2D" unique_id=995625955]
+script = SubResource("GDScript_jgmcy")
+tide_scene = SubResource("PackedScene_uwcg5")
+tide_stages = Array[SubResource("GDScript_cjekg")]([SubResource("Resource_8itxv"), SubResource("Resource_uwcg5"), SubResource("Resource_cjekg")])
