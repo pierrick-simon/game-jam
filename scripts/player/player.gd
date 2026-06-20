@@ -10,8 +10,14 @@ extends CharacterBody2D
 @onready var animated_sprite = $AnimatedSprite2D
 
 var finished: bool = false
+var can_start: bool = false
+
+func _ready() -> void:
+	animated_sprite.play("idle")
 
 func _physics_process(delta: float) -> void:
+	if not can_start:
+		return
 	var direction: float = input_component.input_horizontal
 	if not finished:
 		dash_component.handle_dash(self, input_component.get_dash_input(), direction)
@@ -44,3 +50,6 @@ func update_animation(direction: float, is_dashing: bool):
 
 func _on_end_npc_has_entered_finish() -> void:
 	finished = true
+
+func _on_level_1_can_start() -> void:
+	can_start = true

@@ -4,7 +4,7 @@ extends Node2D
 
 var finished: bool = false
 var rad: float = 0.0
-var rad_incr: float = 500.0
+var rad_incr: float = 1500.0
 
 @export_subgroup("Settings")
 @export var color: Color

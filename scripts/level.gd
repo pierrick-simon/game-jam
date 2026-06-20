@@ -6,13 +6,16 @@ extends Node2D
 @onready var circle_drawer = $CanvasLayer/CircleDrawer
 
 var rad: float = 1500.0
-
-var rad_incr: float = 500.0
+var rad_incr: float = 1500.0
 
 @export_subgroup("Settings")
 @export var color: Color
 
+signal can_start
+
 func _process(delta: float) -> void:
+	if rad == 0:
+		emit_signal("can_start")
 	if rad >= 0:
 		rad -= rad_incr * delta
 		if rad < 0:
