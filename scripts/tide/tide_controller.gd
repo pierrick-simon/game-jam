@@ -1,17 +1,17 @@
 class_name TideController
 extends Node2D
 
-@export_category("Tide controls")
+@export_subgroup("Basic tide settings")
 @export var tide_up: bool = false
 @export var is_random: bool = true
+@export var underwater_background: Sprite2D
 
+@export_subgroup("Random tide settings")
 @export var min_time_between_tide: float = 10
 @export var max_time_between_tide: float = 15
 @export var tide_duration: float = 10
 
-@export var underwater_background: Sprite2D
-
-@export_category("Wave movement expressions")
+@export_subgroup("Wave movement expressions")
 @export var y_expression_string: String = "(sin(t * 4) * 0.1 + 0.3 * t) / 2.7"
 @onready var _y_expression := Expression.new()
 

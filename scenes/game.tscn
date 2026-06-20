@@ -794,14 +794,14 @@ sources/1 = SubResource("TileSetAtlasSource_iywne")
 script = ExtResource("1_p57ef")
 color = Color(1, 0.8666667, 0.5137255, 1)
 
-[node name="Background2" type="Sprite2D" parent="Level" unique_id=367785055]
+[node name="BeachBackground" type="Sprite2D" parent="Level" unique_id=367785055]
 z_index = -4096
 texture_filter = 1
 position = Vector2(576.182, 323.863)
 scale = Vector2(5.758177, 5.758178)
 texture = ExtResource("3_gee14")
 
-[node name="Background" type="Sprite2D" parent="Level" unique_id=1477154323]
+[node name="UnderwaterBackground" type="Sprite2D" parent="Level" unique_id=1477154323]
 z_index = -4096
 texture_filter = 1
 material = SubResource("ShaderMaterial_gee14")
@@ -825,9 +825,9 @@ tile_set = SubResource("TileSet_y41eq")
 unique_name_in_owner = true
 position = Vector2(927, 634)
 
-[node name="TideController" parent="Level" unique_id=1799266707 node_paths=PackedStringArray("underwaterBackground") instance=ExtResource("6_iywne")]
+[node name="TideController" parent="Level" unique_id=1799266707 node_paths=PackedStringArray("underwater_background") instance=ExtResource("6_iywne")]
 unique_name_in_owner = true
-underwaterBackground = NodePath("../Background")
+underwater_background = NodePath("../UnderwaterBackground")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Level" unique_id=744167029]
 layer = 10
