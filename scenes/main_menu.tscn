@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://b7wtr7lyaa533"]
+
+[ext_resource type="Texture2D" uid="uid://c8kmv7b1vased" path="res://assets/UI Black Letters.png" id="1_l6cm7"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ekxnf"]
+load_path = "res://.godot/imported/UI Black Letters.png-1ddc190aa28b6bdbe94a22aaba12fb62.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vvub"]
+atlas = SubResource("CompressedTexture2D_ekxnf")
+region = Rect2(1, 208, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_in4dw"]
+atlas = ExtResource("1_l6cm7")
+region = Rect2(1, 224, 14, 16)
+
+[node name="MainMenu" type="Node2D" unique_id=1656498219]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=51875240]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(1, 0.8666667, 0.5137255, 1)
+
+[node name="Play" type="TextureButton" parent="." unique_id=953776602]
+offset_left = 368.0
+offset_top = 346.0
+offset_right = 455.0
+offset_bottom = 445.4286
+texture_normal = SubResource("AtlasTexture_0vvub")
+texture_pressed = SubResource("AtlasTexture_in4dw")
+stretch_mode = 0
