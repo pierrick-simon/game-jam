@@ -73,6 +73,8 @@ func _input(event: InputEvent) -> void:
 		elif level_instance.rad <= 0 and level_instance.star_anim == null:
 			level_instance.process_mode = Node.PROCESS_MODE_DISABLED
 			get_node("Pause").visible = true
+			var cam: Camera2D = level_instance.get_node("Player").get_node("Camera2D")
+			get_node("Pause").position = cam.get_screen_center_position()
 			pause = true
 
 func _quit() -> void:

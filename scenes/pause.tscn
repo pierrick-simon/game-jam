@@ -35,13 +35,15 @@ atlas = ExtResource("1_f1d2v")
 region = Rect2(145, 256, 14, 16)
 
 [node name="Pause" type="Node2D" unique_id=825054384]
+scale = Vector2(0.7, 0.7)
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=959866198]
-offset_left = 360.0
-offset_top = 232.0
-offset_right = 792.0
-offset_bottom = 368.0
+offset_left = -216.0
+offset_top = -64.0
+offset_right = 216.0
+offset_bottom = 72.0
 color = Color(1, 0.8666667, 0.5137255, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="ColorRect" unique_id=280884338]
 layout_mode = 0
@@ -49,6 +51,7 @@ offset_left = 8.0
 offset_top = -8.0
 offset_right = 424.0
 color = Color(1, 0.8666667, 0.5137255, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect2" type="ColorRect" parent="ColorRect" unique_id=557053352]
 layout_mode = 0
@@ -57,6 +60,7 @@ offset_top = 8.0
 offset_right = 440.0
 offset_bottom = 128.0
 color = Color(1, 0.8666667, 0.5137255, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect3" type="ColorRect" parent="ColorRect" unique_id=1857602451]
 layout_mode = 0
@@ -65,6 +69,7 @@ offset_top = 136.0
 offset_right = 424.0
 offset_bottom = 144.0
 color = Color(1, 0.8666667, 0.5137255, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect4" type="ColorRect" parent="ColorRect" unique_id=2042571533]
 layout_mode = 0
@@ -72,39 +77,44 @@ offset_left = -8.0
 offset_top = 8.0
 offset_bottom = 128.0
 color = Color(1, 0.8666667, 0.5137255, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Play" type="TextureButton" parent="." unique_id=1158207441]
-offset_left = 376.0
-offset_top = 248.0
-offset_right = 463.0
-offset_bottom = 347.4286
+offset_left = -200.0
+offset_top = -48.0
+offset_right = -113.0
+offset_bottom = 51.42859
 texture_normal = SubResource("AtlasTexture_r8yp4")
 texture_pressed = SubResource("AtlasTexture_m0klm")
 stretch_mode = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="Quit" type="TextureButton" parent="." unique_id=1936407416]
-offset_left = 688.0
-offset_top = 248.0
-offset_right = 775.0
-offset_bottom = 347.4286
+offset_left = 112.0
+offset_top = -48.0
+offset_right = 199.0
+offset_bottom = 51.42859
 texture_normal = SubResource("AtlasTexture_aicil")
 texture_pressed = SubResource("AtlasTexture_jn4bt")
 stretch_mode = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="Home" type="TextureButton" parent="." unique_id=1838089031]
-offset_left = 480.0
-offset_top = 248.0
-offset_right = 567.0
-offset_bottom = 347.4286
+offset_left = -96.0
+offset_top = -48.0
+offset_right = -9.0
+offset_bottom = 51.42859
 texture_normal = SubResource("AtlasTexture_r1fnm")
 texture_pressed = SubResource("AtlasTexture_wen6a")
 stretch_mode = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="Restart" type="TextureButton" parent="." unique_id=122145619]
-offset_left = 584.0
-offset_top = 248.0
-offset_right = 671.0
-offset_bottom = 347.4286
+offset_left = 8.0
+offset_top = -48.0
+offset_right = 95.0
+offset_bottom = 51.42859
 texture_normal = SubResource("AtlasTexture_cml1b")
 texture_pressed = SubResource("AtlasTexture_1xtef")
 stretch_mode = 0
+metadata/_edit_use_anchors_ = true

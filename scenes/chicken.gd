@@ -11,7 +11,6 @@ func _ready() -> void:
 		bald.play("walk")
 		bald.visible = true
 		chicken.visible = false
-		
 	else:
 		chicken.play("walk")
 
