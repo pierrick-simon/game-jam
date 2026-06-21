@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blnughpbrmohv"
-path="res://.godot/imported/rocky's walk cycle.png-29143233b447589ca18858e6f44b902e.ctex"
+uid="uid://b1wehmbwm4wd7"
+path="res://.godot/imported/chicken.png-bb0db6ce8a40b9eb12f28ffa743d83c8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/rocky's walk cycle.png"
-dest_files=["res://.godot/imported/rocky's walk cycle.png-29143233b447589ca18858e6f44b902e.ctex"]
+source_file="res://assets/chicken.png"
+dest_files=["res://.godot/imported/chicken.png-bb0db6ce8a40b9eb12f28ffa743d83c8.ctex"]
 
 [params]
 
