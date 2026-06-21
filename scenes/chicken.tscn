@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://bu0tx3sf8swr7"]
+
+[ext_resource type="Script" uid="uid://imtjrv4lvp7b" path="res://scenes/chicken.gd" id="1_1yv3s"]
+[ext_resource type="Texture2D" uid="uid://blnughpbrmohv" path="res://assets/rocky's walk cycle.png" id="1_8lku0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yv3s"]
+atlas = ExtResource("1_8lku0")
+region = Rect2(0, 0, 103, 103)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nutj5"]
+atlas = ExtResource("1_8lku0")
+region = Rect2(103, 0, 103, 103)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rc7ma"]
+atlas = ExtResource("1_8lku0")
+region = Rect2(206, 0, 103, 103)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0du8g"]
+atlas = ExtResource("1_8lku0")
+region = Rect2(309, 0, 103, 103)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bti8l"]
+atlas = ExtResource("1_8lku0")
+region = Rect2(412, 0, 103, 103)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pep2a"]
+atlas = ExtResource("1_8lku0")
+region = Rect2(515, 0, 103, 103)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sgx4"]
+atlas = ExtResource("1_8lku0")
+region = Rect2(618, 0, 103, 103)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8aah5"]
+atlas = ExtResource("1_8lku0")
+region = Rect2(721, 0, 103, 103)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kdmkc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1yv3s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nutj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rc7ma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0du8g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bti8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pep2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sgx4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8aah5")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kdmkc"]
+size = Vector2(64, 72)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=636329933]
+scale = Vector2(0.5, 0.5)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_1yv3s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=58651981]
+sprite_frames = SubResource("SpriteFrames_kdmkc")
+animation = &"walk"
+frame_progress = 0.19016452
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=113278298]
+shape = SubResource("RectangleShape2D_kdmkc")

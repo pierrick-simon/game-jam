@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var star_anim_scene: PackedScene = preload("res://scenes/star_anim.tscn")
 @onready var seagull_scene: PackedScene = preload("res://scenes/enemy/enemy.tscn")
+@onready var chicken_scene: PackedScene = preload("res://scenes/chicken.tscn")
 @onready var end_npc = %EndNPC
 @onready var player = $Player
 @onready var circle_drawer = $CanvasLayer/CircleDrawer
@@ -16,13 +17,15 @@ var star_anim: Node
 
 # --- seagull settings ---
 @export_subgroup("Seagull")
-@export var spawn_interval: float = 5.0
+@export var spawn_interval_seagull: float = 5.0
+@export var spawn_interval_chicken: float = randf_range(1.0, 15.0)
 @export var random_spawn: bool = false
 @export var level_x_min: float = 0.0
 @export var level_x_max: float = 2000.0
 @export var spawn_y_offset: float = -800.0
 
 var _seagull_timer: float = 0.0
+var _chicken_timer: float = spawn_interval_chicken
 var _can_spawn: bool = false
 
 signal can_start
@@ -42,9 +45,13 @@ func _process(delta: float) -> void:
 	if not _can_spawn:
 		return
 	_seagull_timer += delta
-	if _seagull_timer >= spawn_interval:
+	if _seagull_timer >= spawn_interval_seagull:
 		_seagull_timer = 0.0
 		_spawn_seagull()
+	_chicken_timer += delta
+	if _chicken_timer >= spawn_interval_chicken:
+		_chicken_timer = 0.0
+		_spawn_chicken()
 
 func _spawn_seagull() -> void:
 	var gull = seagull_scene.instantiate()
@@ -58,6 +65,11 @@ func _spawn_seagull() -> void:
 
 	gull.global_position = Vector2(spawn_x, player.global_position.y + spawn_y_offset)
 	gull.target_x = player.global_position.x
+
+func _spawn_chicken() -> void:
+	var chicken = chicken_scene.instantiate()
+	add_child(chicken)
+	chicken.global_position = Vector2(0, randf_range(520, 620))
 
 func _on_end_npc_has_entered_finish() -> void:
 	found.play()
