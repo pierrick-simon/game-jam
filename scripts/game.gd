@@ -11,6 +11,9 @@ var level_instance: Node
 var main_menu_instance: Node
 var pause: bool = false
 
+var mute_sounds: bool = false
+var mute_musics: bool = false
+
 enum state {
 	main_menu,
 	game
@@ -53,6 +56,8 @@ func _main_menu():
 	main_menu_instance = main_menu_scene.instantiate()
 	main_menu_instance.get_node("Play").pressed.connect(_play)
 	main_menu_instance.get_node("Quit").pressed.connect(_quit)
+	main_menu_instance.get_node("Sounds").toggled.connect(_sounds)
+	main_menu_instance.get_node("Music").toggled.connect(_musics)
 	add_child(main_menu_instance)
 
 func _play() -> void:
@@ -93,3 +98,9 @@ func _home() -> void:
 	level_instance.process_mode = Node.PROCESS_MODE_INHERIT
 	get_node("Pause").visible = false
 	pause = false
+
+func _sounds(mute_sounds: bool) -> void:
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("SoundsEffects"), mute_sounds)
+
+func _musics(mute_musics: bool) -> void:
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Musics"), mute_musics)

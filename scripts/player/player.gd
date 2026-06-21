@@ -32,7 +32,6 @@ func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(self, delta, dash_component.is_dashing())
 	update_animation(velocity.x, dash_component.is_dashing())
 	move_and_slide()
-	print(is_touching_water())
 
 func update_animation(direction: float, is_dashing: bool):
 	if direction > 0:

@@ -16,8 +16,10 @@ z_index = 2
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=412225208]
 stream = ExtResource("3_lnu2h")
 autoplay = true
+bus = &"Musics"
 parameters/looping = true
 
 [node name="Click" type="AudioStreamPlayer" parent="." unique_id=1775472740]
 unique_name_in_owner = true
 stream = ExtResource("4_lbhrr")
+bus = &"SoundsEffects"
