@@ -165,17 +165,14 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" unique_id=600067458 node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "jump_component", "dash_component")]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_gmlin")
 gravity_component = NodePath("GravityComponent")
 input_component = NodePath("InputComponent")
 movement_component = NodePath("MovementsComponent")
 jump_component = NodePath("JumpComponent")
 dash_component = NodePath("DashComponent")
-velocity_max_air = 500.0
-velocity_max_water = 175.0
-underwater_resistance = 500.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=503255334]
 position = Vector2(0, -50)
