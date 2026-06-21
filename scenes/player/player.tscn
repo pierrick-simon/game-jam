@@ -165,17 +165,14 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" unique_id=600067458 node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "jump_component", "dash_component")]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_gmlin")
 gravity_component = NodePath("GravityComponent")
 input_component = NodePath("InputComponent")
 movement_component = NodePath("MovementsComponent")
 jump_component = NodePath("JumpComponent")
 dash_component = NodePath("DashComponent")
-velocity_max_air = 500.0
-velocity_max_water = 175.0
-underwater_resistance = 500.0
 
 [node name="CollisionNormal" type="CollisionShape2D" parent="." unique_id=930561377]
 position = Vector2(-1.092784e-07, -13.5)
@@ -206,7 +203,6 @@ air_accel_speed = 24.0
 air_decel_speed = 16.0
 
 [node name="JumpComponent" parent="." unique_id=839944093 instance=ExtResource("6_75vfm")]
-jump_velocity = -500.0
 
 [node name="DashComponent" parent="." unique_id=1016776761 node_paths=PackedStringArray("collision_normal", "collision_dash") instance=ExtResource("7_0owmy")]
 collision_normal = NodePath("../CollisionNormal")
