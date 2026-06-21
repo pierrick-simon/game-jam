@@ -21,7 +21,7 @@ var star_anim: Node
 @export_subgroup("Seagull")
 @export var spawn_interval_seagull: float = 5.0
 @export var spawn_interval_net: float = 5.0
-@export var spawn_interval_chicken: float = 7.0
+@export var spawn_interval_chicken: float = 2.0
 @export var random_spawn: bool = false
 @export var level_x_min: float = 0.0
 @export var level_x_max: float = 2000.0
@@ -88,7 +88,8 @@ func _spawn_chicken() -> void:
 	var chicken = chicken_scene.instantiate()
 	$SpawnedObjects.add_child(chicken)
 	chicken.tide_controller = tide_controller
-	chicken.global_position = Vector2(0, 600)
+	var sreen_left = get_viewport().get_camera_2d().get_screen_center_position().x - get_viewport_rect().size.x / 2.0
+	chicken.global_position = Vector2(sreen_left, 600)
 	
 func _spawn_net() -> void:
 	if player.global_position.y < _get_water_y():
@@ -97,12 +98,13 @@ func _spawn_net() -> void:
 	$SpawnedObjects.add_child(net)
 	net.tide_controller = tide_controller
 	var screen_size = get_viewport_rect().size
+	var sreen_left = get_viewport().get_camera_2d().get_screen_center_position().x - get_viewport_rect().size.x / 2.0
 	if randf() > 0.5:
 		net.direction = 1.0
-		net.global_position = Vector2(-50, randf_range(_get_water_y(), screen_size.y))
+		net.global_position = Vector2(sreen_left - 50, randf_range(_get_water_y(), screen_size.y))
 	else:
 		net.direction = -1.0
-		net.global_position = Vector2(get_viewport_rect().size.x + 50, randf_range(_get_water_y(), screen_size.y))
+		net.global_position = Vector2(sreen_left + screen_size.x + 50, randf_range(_get_water_y(), screen_size.y))
 
 func _on_end_npc_has_entered_finish() -> void:
 	found.play()
