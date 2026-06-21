@@ -23,6 +23,7 @@ extends Node2D
 var _tide_timer := Timer.new()
 
 var _screen_size: Vector2
+var _tween: Tween
 
 signal tide_going_up
 
@@ -39,15 +40,19 @@ func switchTide() -> void:
 
 func moveTideUp() -> void:
 	tide_going_up.emit()
-	var tween := create_tween()
-	tween.tween_method(_evaluate_pose, 0.0, 10.0, tide_duration)
+	_tween = create_tween()
+	_tween.tween_method(_evaluate_pose, 0.0, 10.0, tide_duration)
 	tide_up = true
 
 func moveTideDown() -> void:
 	tide_going_down.emit()
-	var tween := create_tween()
-	tween.tween_method(_evaluate_pose, 10.0, 0.0, tide_duration)
+	_tween = create_tween()
+	_tween.tween_method(_evaluate_pose, 10.0, 0.0, tide_duration)
 	tide_up = false
+
+func reset_tide() -> void:
+	_tween.stop()
+	_evaluate_pose(0.0)
 
 func get_underwater_y_pos() -> float:
 	return wave.global_position.y

@@ -106,3 +106,4 @@ func _end_level_anim() -> void:
 func _clear() -> void:
 	for object in $SpawnedObjects.get_children():
 		object.queue_free()
+	%TideController.reset_tide()
