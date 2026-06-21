@@ -18,6 +18,22 @@ region = Rect2(65, 240, 14, 16)
 atlas = ExtResource("1_l6cm7")
 region = Rect2(65, 256, 14, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnb5j"]
+atlas = ExtResource("1_l6cm7")
+region = Rect2(48, 272, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7stc4"]
+atlas = ExtResource("1_l6cm7")
+region = Rect2(144, 288, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqqt6"]
+atlas = ExtResource("1_l6cm7")
+region = Rect2(128, 272, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wu84c"]
+atlas = ExtResource("1_l6cm7")
+region = Rect2(144, 288, 16, 16)
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l6cm7"]
 load_path = "res://.godot/imported/crab.png-8c3f0d487c4f55739f26903ac89d0947.ctex"
 
@@ -49,6 +65,26 @@ offset_bottom = 482.4286
 texture_normal = SubResource("AtlasTexture_l6cm7")
 texture_pressed = SubResource("AtlasTexture_ekxnf")
 stretch_mode = 0
+
+[node name="Music" type="TextureButton" parent="." unique_id=979134945]
+offset_left = 1063.0
+offset_top = 21.0
+offset_right = 1125.0
+offset_bottom = 83.0
+toggle_mode = true
+texture_normal = SubResource("AtlasTexture_fnb5j")
+texture_pressed = SubResource("AtlasTexture_7stc4")
+stretch_mode = 4
+
+[node name="Sounds" type="TextureButton" parent="." unique_id=45296598]
+offset_left = 985.0
+offset_top = 21.0
+offset_right = 1047.0
+offset_bottom = 83.0
+toggle_mode = true
+texture_normal = SubResource("AtlasTexture_bqqt6")
+texture_pressed = SubResource("AtlasTexture_wu84c")
+stretch_mode = 4
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=96061023]
 offset_left = 480.0
