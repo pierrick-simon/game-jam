@@ -8,6 +8,7 @@ extends Node2D
 @onready var player = $Player
 @onready var circle_drawer = $CanvasLayer/CircleDrawer
 @onready var found = %Found
+@onready var tide_controller: TideController = $TideController
 
 var rad: float = 1500.0
 var rad_incr: float = 1500.0
@@ -59,8 +60,20 @@ func _process(delta: float) -> void:
 	if _chicken_timer >= spawn_interval_chicken:
 		_chicken_timer = 0.0
 		_spawn_chicken()
+		
+func _get_water_y() -> float:
+	return tide_controller.get_underwater_y_pos()
 
 func _spawn_seagull() -> void:
+<<<<<<< HEAD
+=======
+	if player.global_position.y >= _get_water_y():
+		return
+		
+	var gull = seagull_scene.instantiate()
+	add_child(gull)
+
+>>>>>>> 28d15a859bc89b0a68a604b221b259172dae8054
 	var spawn_x: float
 	if random_spawn:
 		spawn_x = randf_range(level_x_min, level_x_max)
@@ -78,15 +91,17 @@ func _spawn_chicken() -> void:
 	chicken.global_position = Vector2(0, randf_range(520, 620))
 	
 func _spawn_net() -> void:
+	if player.global_position.y < _get_water_y():
+		return
 	var net = net_scene.instantiate()
 	add_child(net)
 	var screen_size = get_viewport_rect().size
 	if randf() > 0.5:
 		net.direction = 1.0
-		net.global_position = Vector2(-50, randf_range(0, screen_size.y))
+		net.global_position = Vector2(-50, randf_range(_get_water_y(), screen_size.y))
 	else:
 		net.direction = -1.0
-		net.global_position = Vector2(get_viewport_rect().size.x + 50, randf_range(0, screen_size.y))
+		net.global_position = Vector2(get_viewport_rect().size.x + 50, randf_range(_get_water_y(), screen_size.y))
 
 func _on_end_npc_has_entered_finish() -> void:
 	found.play()
