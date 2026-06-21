@@ -3,10 +3,17 @@ extends CharacterBody2D
 
 const SPEED = 50.0
 
-@onready var animated_sprite = $AnimatedSprite2D
+@export var chicken: AnimatedSprite2D
+@export var bald: AnimatedSprite2D
 
 func _ready() -> void:
-	animated_sprite.play("walk")
+	if randf() < 0.3:
+		bald.play("walk")
+		bald.visible = true
+		chicken.visible = false
+		
+	else:
+		chicken.play("walk")
 
 func _physics_process(delta: float) -> void:
 	velocity.x = SPEED
