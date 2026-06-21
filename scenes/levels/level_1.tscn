@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://baxgmxm4ryk5u" path="res://scripts/level.gd" id="1_qxy0u"]
 [ext_resource type="Texture2D" uid="uid://cgahmchqehgs7" path="res://assets/backgroundAboveTide.png" id="2_excbq"]
 [ext_resource type="Shader" uid="uid://c8xo7vpeavqlx" path="res://assets/tide/Tide.gdshader" id="3_iav0o"]
-[ext_resource type="Texture2D" uid="uid://doem800ywxsa5" path="res://assets/background.png" id="4_dnkej"]
+[ext_resource type="Texture2D" uid="uid://bmvdthpey0dyy" path="res://assets/background.png" id="4_dnkej"]
 [ext_resource type="PackedScene" uid="uid://si18mgqm0vto" path="res://scenes/player/player.tscn" id="5_mm8aj"]
 [ext_resource type="Texture2D" uid="uid://dwdfmeg55kceu" path="res://assets/tilemap.png" id="6_wtwp4"]
 [ext_resource type="Texture2D" uid="uid://i0c3k2pqkuop" path="res://assets/tilemap_new_softy_sand.png" id="7_iwr0g"]
@@ -794,19 +794,25 @@ process_mode = 1
 script = ExtResource("1_qxy0u")
 color = Color(1, 0.8666667, 0.5137255, 1)
 
-[node name="BeachBackground" type="Sprite2D" parent="." unique_id=788301011]
+[node name="BeachBackgroundParallax" type="Parallax2D" parent="." unique_id=185179943]
+scroll_scale = Vector2(0.1, 0.1)
+
+[node name="BeachBackground" type="Sprite2D" parent="BeachBackgroundParallax" unique_id=788301011]
 z_index = -4096
 texture_filter = 1
-position = Vector2(576.182, 323.863)
-scale = Vector2(5.758177, 5.758178)
+position = Vector2(1245, -113.50003)
+scale = Vector2(12.686665, 12.686667)
 texture = ExtResource("2_excbq")
 
-[node name="UnderwaterBackground" type="Sprite2D" parent="." unique_id=613658263]
+[node name="UnderwaterBackgroundParallax" type="Parallax2D" parent="." unique_id=334880]
+scroll_scale = Vector2(0.1, 0.1)
+
+[node name="UnderwaterBackground" type="Sprite2D" parent="UnderwaterBackgroundParallax" unique_id=613658263]
 z_index = -4096
 texture_filter = 1
 material = SubResource("ShaderMaterial_gee14")
-position = Vector2(576.1907, 322.99997)
-scale = Vector2(1.7164947, 1.7164948)
+position = Vector2(1251, 118.000015)
+scale = Vector2(1.4712316, 1.4712319)
 texture = ExtResource("4_dnkej")
 
 [node name="Bounds" type="StaticBody2D" parent="." unique_id=2067125842]
@@ -829,7 +835,7 @@ position = Vector2(927, 634)
 
 [node name="TideController" parent="." unique_id=1799266707 node_paths=PackedStringArray("underwater_background") instance=ExtResource("9_np2pn")]
 unique_name_in_owner = true
-underwater_background = NodePath("../UnderwaterBackground")
+underwater_background = NodePath("../UnderwaterBackgroundParallax/UnderwaterBackground")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=769163416]
 layer = 10

@@ -20,7 +20,7 @@ var star_anim: Node
 @export_subgroup("Seagull")
 @export var spawn_interval_seagull: float = 5.0
 @export var spawn_interval_net: float = 5.0
-@export var spawn_interval_chicken: float = randf_range(1.0, 15.0)
+@export var spawn_interval_chicken: float = randf_range(10.0, 30.0)
 @export var random_spawn: bool = false
 @export var level_x_min: float = 0.0
 @export var level_x_max: float = 2000.0
@@ -61,15 +61,14 @@ func _process(delta: float) -> void:
 		_spawn_chicken()
 
 func _spawn_seagull() -> void:
-	var gull = seagull_scene.instantiate()
-	add_child(gull)
-
 	var spawn_x: float
 	if random_spawn:
 		spawn_x = randf_range(level_x_min, level_x_max)
 	else:
 		spawn_x = player.global_position.x + randf_range(-60, 60)
 
+	var gull = seagull_scene.instantiate()
+	add_child(gull)
 	gull.global_position = Vector2(spawn_x, player.global_position.y + spawn_y_offset)
 	gull.target_x = player.global_position.x
 
