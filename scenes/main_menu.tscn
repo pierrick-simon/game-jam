@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b7wtr7lyaa533"]
 
 [ext_resource type="Texture2D" uid="uid://c8kmv7b1vased" path="res://assets/UI Black Letters.png" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://dtrkx7mq35loo" path="res://assets/name.png" id="2_ekxnf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0vvub"]
 atlas = ExtResource("1_l6cm7")
@@ -57,9 +58,9 @@ offset_bottom = 648.0
 color = Color(1, 0.8666667, 0.5137255, 1)
 
 [node name="Play" type="TextureButton" parent="." unique_id=953776602]
-offset_left = 397.0
+offset_left = 394.0
 offset_top = 383.0
-offset_right = 484.0
+offset_right = 481.0
 offset_bottom = 482.4286
 texture_normal = SubResource("AtlasTexture_0vvub")
 texture_pressed = SubResource("AtlasTexture_in4dw")
@@ -110,3 +111,8 @@ offset_right = 669.0
 offset_bottom = 210.0
 texture = SubResource("AtlasTexture_yah27")
 stretch_mode = 5
+
+[node name="Name" type="Sprite2D" parent="." unique_id=1023919954]
+position = Vector2(579, 259)
+scale = Vector2(1.2608696, 1.28125)
+texture = ExtResource("2_ekxnf")
