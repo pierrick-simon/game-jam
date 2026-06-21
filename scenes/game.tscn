@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b6qhus2nxqahs" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://dsjlykhfs03rn" path="res://scenes/pause.tscn" id="2_yqjtg"]
 [ext_resource type="AudioStream" uid="uid://dqc2h4vjv55a" path="res://assets/sounds/music.mp3" id="3_lnu2h"]
-[ext_resource type="AudioStream" uid="uid://bhfvuvhoufqjw" path="res://assets/sounds/click.mp3" id="4_lbhrr"]
+[ext_resource type="AudioStream" uid="uid://cur1v80r2akrh" path="res://assets/sounds/click.mp3" id="4_lbhrr"]
 
 [node name="Game" type="Node2D" unique_id=2097119406]
 script = ExtResource("1_uwrxv")
@@ -11,14 +11,13 @@ levels = Array[String](["level_1", "level_1"])
 
 [node name="Pause" parent="." unique_id=825054384 instance=ExtResource("2_yqjtg")]
 visible = false
+z_index = 2
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=412225208]
 stream = ExtResource("3_lnu2h")
 autoplay = true
-bus = &"Musics"
 parameters/looping = true
 
 [node name="Click" type="AudioStreamPlayer" parent="." unique_id=1775472740]
 unique_name_in_owner = true
 stream = ExtResource("4_lbhrr")
-bus = &"SoundsEffects"

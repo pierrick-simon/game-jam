@@ -173,6 +173,7 @@ input_component = NodePath("InputComponent")
 movement_component = NodePath("MovementsComponent")
 jump_component = NodePath("JumpComponent")
 dash_component = NodePath("DashComponent")
+spawn_point = null
 
 [node name="CollisionNormal" type="CollisionShape2D" parent="." unique_id=930561377]
 position = Vector2(-1.092784e-07, -13.5)

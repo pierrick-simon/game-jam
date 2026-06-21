@@ -32,6 +32,7 @@ func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(self, delta, dash_component.is_dashing())
 	update_animation(velocity.x, dash_component.is_dashing())
 	move_and_slide()
+	print(is_touching_water())
 
 func update_animation(direction: float, is_dashing: bool):
 	if direction > 0:
@@ -66,3 +67,10 @@ func take_damage() -> void:
 	global_position = spawn_point
 	await get_tree().create_timer(0.3).timeout
 	can_start = true
+
+func is_touching_water() -> bool:
+	var sprite_y_size = animated_sprite.sprite_frames.get_frame_texture(animated_sprite.animation, 0).get_size().y
+	return animated_sprite.global_position.y + sprite_y_size > tide_controller.get_underwater_y_pos()
+	
+func is_fully_underwater() -> bool:
+	return animated_sprite.global_position.y > tide_controller.get_underwater_y_pos()

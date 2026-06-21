@@ -47,6 +47,7 @@ func moveTideDown() -> void:
 	tide_going_down.emit()
 	var tween := create_tween()
 	tween.tween_method(_evaluate_pose, 10.0, 0.0, tide_duration)
+	tide_up = false
 
 func get_underwater_y_pos() -> float:
 	return wave.global_position.y
