@@ -229,6 +229,7 @@ collision_dash = NodePath("../CollisionDash")
 layer = 10
 
 [node name="DeathCircle" type="Node2D" parent="CanvasLayer" unique_id=687356106]
+z_index = 100
 script = ExtResource("8_qek5x")
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="." unique_id=629235898]
