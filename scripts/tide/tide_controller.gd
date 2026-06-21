@@ -57,7 +57,6 @@ func _evaluate_pose(t: float) -> void:
 	position.y = result_y * _screen_size.y
 	var result_x: float = _x_expression.execute([t])
 	position.x = result_x
-	tide_up = false
 
 func _getNewTideDelay() -> float:
 	return tide_duration + randf_range(min_time_between_tide, max_time_between_tide)
