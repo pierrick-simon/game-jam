@@ -8,6 +8,5 @@ func _ready() -> void:
 func _draw() -> void:
 	if world == null:
 		return
-	var win_size = DisplayServer.window_get_size()
-	var pos = Vector2(win_size.x / 2, win_size.y / 2 + 30)
+	var pos = world.get_node("Player").position
 	draw_circle(pos, world.rad, world.color)
