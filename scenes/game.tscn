@@ -7,7 +7,7 @@
 
 [node name="Game" type="Node2D" unique_id=2097119406]
 script = ExtResource("1_uwrxv")
-levels = Array[String](["level_1", "level_1"])
+levels = Array[String](["level_ariel", "level_2", "level_1"])
 
 [node name="Pause" parent="." unique_id=825054384 instance=ExtResource("2_yqjtg")]
 visible = false

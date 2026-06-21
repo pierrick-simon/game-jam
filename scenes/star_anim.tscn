@@ -58,11 +58,12 @@ animations = [{
 }]
 
 [node name="starAnim" type="Node2D" unique_id=1124005205]
+z_index = 100
 script = ExtResource("1_nnv35")
 color = Color(1, 0.8666667, 0.5137255, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1326734377]
-z_index = 10
+z_index = 100
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_0vvub")
 animation = &"heart"
