@@ -51,7 +51,8 @@ func moveTideDown() -> void:
 	tide_up = false
 
 func reset_tide() -> void:
-	_tween.stop()
+	if _tween != null:
+		_tween.stop()
 	_evaluate_pose(0.0)
 
 func get_underwater_y_pos() -> float:
