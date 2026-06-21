@@ -18,6 +18,7 @@ shader = ExtResource("3_iav0o")
 shader_parameter/mask_position = Vector2(0, 0)
 shader_parameter/mask_size = Vector2(0, 0)
 shader_parameter/screen_size = Vector2(0, 0)
+shader_parameter/tide_offset = 0.0
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_in4dw"]
 a = Vector2(2522, 0)
