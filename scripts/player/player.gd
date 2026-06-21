@@ -11,6 +11,8 @@ extends CharacterBody2D
 
 @export var spawn_point: Vector2 = Vector2(100, 100)
 
+@onready var tide_controller: TideController = %TideController
+
 var finished: bool = false
 var can_start: bool = false
 
