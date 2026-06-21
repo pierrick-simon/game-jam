@@ -9,7 +9,7 @@ extends CharacterBody2D
 
 @onready var animated_sprite = $AnimatedSprite2D
 
-@export var spawn_point: Vector2 = Vector2(100, 100)
+@export var spawn_point: Vector2
 
 @onready var tide_controller: TideController = %TideController
 
@@ -18,6 +18,7 @@ var can_start: bool = false
 
 func _ready() -> void:
 	animated_sprite.play("idle")
+	spawn_point = position
 
 func _physics_process(delta: float) -> void:
 	if not can_start:
