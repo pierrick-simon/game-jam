@@ -9,10 +9,15 @@ enum State { GLIDE, DIVE, DEAD }
 var state = State.GLIDE
 var target_x: float = 0.0
 
+var tide_controller: TideController = null
+
 func _ready() -> void:
 	animated_sprite.play("fly")
 
 func _physics_process(_delta: float) -> void:
+	if _get_water_y() < global_position.y:
+		_die()
+	
 	match state:
 		State.GLIDE:
 			var dir = sign(target_x - global_position.x)
@@ -40,6 +45,9 @@ func _physics_process(_delta: float) -> void:
 
 	if global_position.y > 2000.0:
 		queue_free()
+
+func _get_water_y() -> float:
+	return tide_controller.get_underwater_y_pos()
 
 func _die() -> void:
 	if state == State.DEAD:

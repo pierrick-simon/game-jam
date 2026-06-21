@@ -73,6 +73,7 @@ func _spawn_seagull() -> void:
 		
 	var gull = seagull_scene.instantiate()
 	$SpawnedObjects.add_child(gull)
+	gull.tide_controller = tide_controller
 
 	var spawn_x: float
 	if random_spawn:
@@ -86,6 +87,7 @@ func _spawn_seagull() -> void:
 func _spawn_chicken() -> void:
 	var chicken = chicken_scene.instantiate()
 	$SpawnedObjects.add_child(chicken)
+	chicken.tide_controller = tide_controller
 	chicken.global_position = Vector2(0, 600)
 	
 func _spawn_net() -> void:
@@ -93,6 +95,7 @@ func _spawn_net() -> void:
 		return
 	var net = net_scene.instantiate()
 	$SpawnedObjects.add_child(net)
+	net.tide_controller = tide_controller
 	var screen_size = get_viewport_rect().size
 	if randf() > 0.5:
 		net.direction = 1.0

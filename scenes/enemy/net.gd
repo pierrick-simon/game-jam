@@ -9,7 +9,12 @@ var direction: float = 1.0   # 1 = right, -1 = left
 enum State { MOVE, DEAD }
 var state = State.MOVE
 
+var tide_controller: TideController = null
+
 func _physics_process(_delta: float) -> void:
+	if _get_water_y() > global_position.y:
+		_die()
+
 	if state == State.DEAD:
 		return
 	
@@ -33,6 +38,9 @@ func _physics_process(_delta: float) -> void:
 		
 func take_damage() -> void:
 	_die()
+
+func _get_water_y() -> float:
+	return tide_controller.get_underwater_y_pos()
 
 func _die() -> void:
 	if state == State.DEAD:

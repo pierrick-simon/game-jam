@@ -858,7 +858,6 @@ bus = &"SoundsEffects"
 
 [node name="SpawnedObjects" type="Node" parent="." unique_id=115047149]
 
-
 [connection signal="can_start" from="." to="Player" method="_on_level_1_can_start"]
 [connection signal="has_entered_finish" from="EndNPC" to="." method="_on_end_npc_has_entered_finish"]
 [connection signal="has_entered_finish" from="EndNPC" to="Player" method="_on_end_npc_has_entered_finish"]
