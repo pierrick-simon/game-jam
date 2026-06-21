@@ -7,9 +7,14 @@ extends CharacterBody2D
 @export var jump_component: JumpComponent
 @export var dash_component: DashComponent
 
+@export_subgroup("Settings")
+@export var velocity_max_air: float = 100
+@export var velocity_max_water: float = 50
+@export var underwater_resistance: float = 300
+
 @onready var animated_sprite = $AnimatedSprite2D
 
-@export var spawn_point: Vector2
+var spawn_point: Vector2
 
 @onready var tide_controller: TideController = %TideController
 
@@ -27,12 +32,21 @@ func _physics_process(delta: float) -> void:
 	if not finished:
 		dash_component.handle_dash(self, input_component.get_dash_input(), direction)
 		movement_component.handle_horizontal_movement(self, direction)
-		jump_component.handle_jump(self, input_component.get_jump_input(), dash_component.is_dashing())
+		jump_component.handle_jump(self, input_component.get_jump_input(), dash_component.is_dashing(), is_fully_underwater())
 	else:
 		velocity.x = velocity.x / 1.5
 	gravity_component.handle_gravity(self, delta, dash_component.is_dashing())
+	_handle_resistance(self, get_underwater_percentage(), delta)
 	update_animation(velocity.x, dash_component.is_dashing())
 	move_and_slide()
+
+func _handle_resistance(body: CharacterBody2D, underwater_pourcentage: float, delta: float) -> void:
+	if not body.is_on_floor():
+		body.velocity.y -= sign(body.velocity.y) * underwater_resistance * underwater_pourcentage * delta
+		var y_max: float = (velocity_max_air - velocity_max_water) * (1 - underwater_pourcentage) + velocity_max_water
+		if body.velocity.y > y_max:
+			body.velocity.y = y_max
+		print(body.velocity.y)
 
 func update_animation(direction: float, is_dashing: bool):
 	if direction > 0:
