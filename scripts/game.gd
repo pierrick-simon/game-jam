@@ -65,7 +65,7 @@ func _play() -> void:
 	_instanciate_new_level(levels[level_index])
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause") and level_instance != null:
+	if event.is_action_pressed("pause") and level_instance != null and !level_instance.get_node("Player").is_dead:
 		if pause:
 			level_instance.process_mode = Node.PROCESS_MODE_INHERIT
 			get_node("Pause").visible = false

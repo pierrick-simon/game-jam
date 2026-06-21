@@ -11,15 +11,20 @@ extends CharacterBody2D
 @export var velocity_max_air: float = 100
 @export var velocity_max_water: float = 50
 @export var underwater_resistance: float = 300
+@export var death_sound: AudioStreamPlayer
 
 @onready var animated_sprite = $AnimatedSprite2D
 
 var spawn_point: Vector2
 
 @onready var tide_controller: TideController = %TideController
+@onready var death_circle: DeathCircle = $CanvasLayer/DeathCircle
 
 var finished: bool = false
 var can_start: bool = false
+var is_dead: bool = false
+
+signal on_death
 
 func _ready() -> void:
 	animated_sprite.play("idle")
@@ -71,18 +76,29 @@ func _on_end_npc_has_entered_finish() -> void:
 
 func _on_level_1_can_start() -> void:
 	can_start = true
-	
+
 func take_damage() -> void:
 	if not can_start:
 		return
+	is_dead = true
 	can_start = false
+	death_sound.play()
 	velocity = Vector2.ZERO
+	var tween := create_tween()
+	death_circle.global_position = position
+	tween.tween_method(death_circle.set_death_radius, 0.0, 1500.0, 1)
+	await tween.finished
 	global_position = spawn_point
-	await get_tree().create_timer(0.3).timeout
+	tween = create_tween()
+	death_circle.global_position = position
+	on_death.emit()
+	tween.tween_method(death_circle.set_death_radius, 1500.0, 0.0, 1)
+	await tween.finished
 	can_start = true
+	is_dead = false
 
 func is_touching_water() -> bool:
-	var sprite_y_size = animated_sprite.sprite_frames.get_frame_texture(animated_sprite.animation, 0).get_size().y
+	var sprite_y_size: float = animated_sprite.sprite_frames.get_frame_texture(animated_sprite.animation, 0).get_size().y
 	return animated_sprite.global_position.y + sprite_y_size > tide_controller.get_underwater_y_pos()
 
 func is_fully_underwater() -> bool:
@@ -91,6 +107,6 @@ func is_fully_underwater() -> bool:
 func get_underwater_percentage() -> float:
 	var underwater_y_pos := tide_controller.get_underwater_y_pos()
 	var player_bottom: float = animated_sprite.global_position.y
-	var sprite_height = animated_sprite.sprite_frames.get_frame_texture(animated_sprite.animation, 0).get_size().y
+	var sprite_height: float = animated_sprite.sprite_frames.get_frame_texture(animated_sprite.animation, 0).get_size().y
 	var player_top: float = player_bottom + sprite_height
 	return clampf(inverse_lerp(player_top, player_bottom, underwater_y_pos), 0, 1)

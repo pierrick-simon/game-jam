@@ -31,9 +31,13 @@ var _seagull_timer: float = 0.0
 var _net_timer: float = 0.0
 var _chicken_timer: float = spawn_interval_chicken
 var _can_spawn: bool = false
+var _spawnable_object: Array[Node]
 
 signal can_start
 signal end_level
+
+func _ready() -> void:
+	player.on_death.connect(_clear)
 
 func _process(delta: float) -> void:
 	# --- original intro circle ---
@@ -69,6 +73,7 @@ func _spawn_seagull() -> void:
 		return
 		
 	var gull = seagull_scene.instantiate()
+	_spawnable_object.append(gull)
 	add_child(gull)
 
 	var spawn_x: float
@@ -82,6 +87,7 @@ func _spawn_seagull() -> void:
 
 func _spawn_chicken() -> void:
 	var chicken = chicken_scene.instantiate()
+	_spawnable_object.append(chicken)
 	add_child(chicken)
 	chicken.global_position = Vector2(0, randf_range(520, 620))
 	
@@ -89,6 +95,7 @@ func _spawn_net() -> void:
 	if player.global_position.y < _get_water_y():
 		return
 	var net = net_scene.instantiate()
+	_spawnable_object.append(net)
 	add_child(net)
 	var screen_size = get_viewport_rect().size
 	if randf() > 0.5:
@@ -108,3 +115,7 @@ func _on_end_npc_has_entered_finish() -> void:
 
 func _end_level_anim() -> void:
 	emit_signal("end_level")
+
+func _clear() -> void:
+	for object in _spawnable_object:
+		remove_child(object)
