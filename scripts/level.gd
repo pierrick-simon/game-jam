@@ -21,7 +21,7 @@ var star_anim: Node
 @export_subgroup("Seagull")
 @export var spawn_interval_seagull: float = 5.0
 @export var spawn_interval_net: float = 5.0
-@export var spawn_interval_chicken: float = 15.0
+@export var spawn_interval_chicken: float = 8.0
 @export var random_spawn: bool = false
 @export var level_x_min: float = 0.0
 @export var level_x_max: float = 2000.0
