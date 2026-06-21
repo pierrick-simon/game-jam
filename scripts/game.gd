@@ -8,6 +8,7 @@ extends Node2D
 var level_index: int = 0
 var level_instance: Node
 var main_menu_instance: Node
+var pause: bool = false
 
 enum state {
 	main_menu,
@@ -18,6 +19,10 @@ func _ready() -> void:
 	_main_menu()
 
 func _process(delta: float) -> void:
+	if pause:
+		_handle_pause()
+
+func _handle_pause() -> void:
 	pass
 
 func _instanciate_new_level(level_path: String) -> void:
@@ -52,11 +57,13 @@ func _play() -> void:
 	_instanciate_new_level(levels[level_index])
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause") and level_instance != null:
-		if level_instance.process_mode == Node.PROCESS_MODE_DISABLED:
+	if event.is_action_pressed("pause") and level_instance != null and level_instance.rad <= 0 and level_instance.star_anim == null:
+		if pause:
 			level_instance.process_mode = Node.PROCESS_MODE_INHERIT
+			pause = false
 		else:
 			level_instance.process_mode = Node.PROCESS_MODE_DISABLED
+			pause = true
 
 func _quit() -> void:
 	get_tree().quit()

@@ -8,6 +8,7 @@ extends Node2D
 
 var rad: float = 1500.0
 var rad_incr: float = 1500.0
+var star_anim: Node
 
 @export_subgroup("Settings")
 @export var color: Color
@@ -59,7 +60,7 @@ func _spawn_seagull() -> void:
 
 func _on_end_npc_has_entered_finish() -> void:
 	_can_spawn = false
-	var star_anim = star_anim_scene.instantiate()
+	star_anim = star_anim_scene.instantiate()
 	star_anim.position = Vector2((player.position.x + end_npc.position.x) / 2, end_npc.position.y - 60)
 	star_anim.end_level.connect(_end_level_anim)
 	add_child(star_anim)

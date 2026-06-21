@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://dsjlykhfs03rn"]
+
+[ext_resource type="Texture2D" uid="uid://c8kmv7b1vased" path="res://assets/UI Black Letters.png" id="1_f1d2v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8yp4"]
+atlas = ExtResource("1_f1d2v")
+region = Rect2(1, 208, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0klm"]
+atlas = ExtResource("1_f1d2v")
+region = Rect2(1, 224, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aicil"]
+atlas = ExtResource("1_f1d2v")
+region = Rect2(65, 240, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jn4bt"]
+atlas = ExtResource("1_f1d2v")
+region = Rect2(65, 256, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1fnm"]
+atlas = ExtResource("1_f1d2v")
+region = Rect2(113, 240, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wen6a"]
+atlas = ExtResource("1_f1d2v")
+region = Rect2(113, 257, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cml1b"]
+atlas = ExtResource("1_f1d2v")
+region = Rect2(145, 240, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xtef"]
+atlas = ExtResource("1_f1d2v")
+region = Rect2(145, 257, 14, 16)
+
+[node name="Pause" type="Node2D" unique_id=825054384]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=959866198]
+offset_left = 360.0
+offset_top = 232.0
+offset_right = 792.0
+offset_bottom = 365.0
+color = Color(1, 0.8666667, 0.5137255, 1)
+
+[node name="Play" type="TextureButton" parent="." unique_id=1158207441]
+offset_left = 376.0
+offset_top = 248.0
+offset_right = 463.0
+offset_bottom = 347.4286
+texture_normal = SubResource("AtlasTexture_r8yp4")
+texture_pressed = SubResource("AtlasTexture_m0klm")
+stretch_mode = 0
+
+[node name="Quit" type="TextureButton" parent="." unique_id=1936407416]
+offset_left = 688.0
+offset_top = 248.0
+offset_right = 775.0
+offset_bottom = 347.4286
+texture_normal = SubResource("AtlasTexture_aicil")
+texture_pressed = SubResource("AtlasTexture_jn4bt")
+stretch_mode = 0
+
+[node name="Home" type="TextureButton" parent="." unique_id=1838089031]
+offset_left = 480.0
+offset_top = 248.0
+offset_right = 567.0
+offset_bottom = 347.4286
+texture_normal = SubResource("AtlasTexture_r1fnm")
+texture_pressed = SubResource("AtlasTexture_wen6a")
+stretch_mode = 0
+
+[node name="Restart" type="TextureButton" parent="." unique_id=122145619]
+offset_left = 584.0
+offset_top = 248.0
+offset_right = 671.0
+offset_bottom = 347.4286
+texture_normal = SubResource("AtlasTexture_cml1b")
+texture_pressed = SubResource("AtlasTexture_1xtef")
+stretch_mode = 0
