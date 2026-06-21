@@ -86,6 +86,7 @@ func take_damage() -> void:
 	velocity = Vector2.ZERO
 	var tween := create_tween()
 	death_circle.global_position = position
+	death_circle.global_position.x -= get_viewport().get_camera_2d().get_screen_center_position().x - get_viewport_rect().size.x / 2.0
 	tween.tween_method(death_circle.set_death_radius, 0.0, 1500.0, 1)
 	await tween.finished
 	global_position = spawn_point
