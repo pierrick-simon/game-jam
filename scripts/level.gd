@@ -5,6 +5,7 @@ extends Node2D
 @onready var end_npc = %EndNPC
 @onready var player = $Player
 @onready var circle_drawer = $CanvasLayer/CircleDrawer
+@onready var found = %Found
 
 var rad: float = 1500.0
 var rad_incr: float = 1500.0
@@ -59,6 +60,7 @@ func _spawn_seagull() -> void:
 	gull.target_x = player.global_position.x
 
 func _on_end_npc_has_entered_finish() -> void:
+	found.play()
 	_can_spawn = false
 	star_anim = star_anim_scene.instantiate()
 	star_anim.position = Vector2((player.position.x + end_npc.position.x) / 2, end_npc.position.y - 60)

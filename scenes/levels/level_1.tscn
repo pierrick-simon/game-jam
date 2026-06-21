@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://daw4tgkgg0iko" path="res://scenes/end_npc.tscn" id="8_bahl2"]
 [ext_resource type="PackedScene" uid="uid://dtltucygc3kje" path="res://scenes/tide/TideController.tscn" id="9_np2pn"]
 [ext_resource type="Script" uid="uid://dy3j2p8jvq3v3" path="res://scripts/canvas_layer.gd" id="10_v6ha0"]
+[ext_resource type="AudioStream" uid="uid://cbyr8pi6hbqe5" path="res://assets/sounds/found.mp3" id="11_excbq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gee14"]
 shader = ExtResource("3_iav0o")
@@ -834,6 +835,11 @@ layer = 10
 [node name="CircleDrawer" type="Node2D" parent="CanvasLayer" unique_id=1253418600]
 unique_name_in_owner = true
 script = ExtResource("10_v6ha0")
+
+[node name="Found" type="AudioStreamPlayer" parent="." unique_id=850873888]
+unique_name_in_owner = true
+stream = ExtResource("11_excbq")
+bus = &"SoundsEffects"
 
 [connection signal="can_start" from="." to="Player" method="_on_level_1_can_start"]
 [connection signal="has_entered_finish" from="EndNPC" to="." method="_on_end_npc_has_entered_finish"]

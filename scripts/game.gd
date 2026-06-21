@@ -4,6 +4,7 @@ extends Node2D
 @export var levels: Array[String]
 
 @onready var main_menu_scene: PackedScene = preload("res://scenes/main_menu.tscn")
+@onready var click: Node = %Click
 
 var level_index: int = 0
 var level_instance: Node
@@ -55,6 +56,7 @@ func _main_menu():
 	add_child(main_menu_instance)
 
 func _play() -> void:
+	click.play()
 	_instanciate_new_level(levels[level_index])
 
 func _input(event: InputEvent) -> void:
@@ -72,18 +74,21 @@ func _quit() -> void:
 	get_tree().quit()
 
 func _replay() -> void:
+	click.play()
 	if level_instance != null:
 		level_instance.process_mode = Node.PROCESS_MODE_INHERIT
 		get_node("Pause").visible = false
 		pause = false
 
 func _restart() -> void:
+	click.play()
 	_instanciate_new_level(levels[level_index])
 	level_instance.process_mode = Node.PROCESS_MODE_INHERIT
 	get_node("Pause").visible = false
 	pause = false
 
 func _home() -> void:
+	click.play()
 	_main_menu()
 	level_instance.process_mode = Node.PROCESS_MODE_INHERIT
 	get_node("Pause").visible = false
