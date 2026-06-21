@@ -34,6 +34,14 @@ region = Rect2(128, 272, 16, 16)
 atlas = ExtResource("1_l6cm7")
 region = Rect2(144, 288, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ln24"]
+atlas = ExtResource("1_l6cm7")
+region = Rect2(144, 304, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtw2f"]
+atlas = ExtResource("1_l6cm7")
+region = Rect2(144, 321, 16, 16)
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l6cm7"]
 load_path = "res://.godot/imported/crab.png-8c3f0d487c4f55739f26903ac89d0947.ctex"
 
@@ -84,6 +92,15 @@ offset_bottom = 83.0
 toggle_mode = true
 texture_normal = SubResource("AtlasTexture_bqqt6")
 texture_pressed = SubResource("AtlasTexture_wu84c")
+stretch_mode = 4
+
+[node name="Restart" type="TextureButton" parent="." unique_id=1618744594]
+offset_left = 23.0
+offset_top = 21.0
+offset_right = 85.0
+offset_bottom = 83.0
+texture_normal = SubResource("AtlasTexture_8ln24")
+texture_pressed = SubResource("AtlasTexture_rtw2f")
 stretch_mode = 4
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=96061023]
