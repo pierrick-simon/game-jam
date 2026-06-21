@@ -24,7 +24,7 @@ region = Rect2(113, 240, 14, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wen6a"]
 atlas = ExtResource("1_f1d2v")
-region = Rect2(113, 257, 14, 16)
+region = Rect2(113, 256, 14, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cml1b"]
 atlas = ExtResource("1_f1d2v")
@@ -32,7 +32,7 @@ region = Rect2(145, 240, 14, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1xtef"]
 atlas = ExtResource("1_f1d2v")
-region = Rect2(145, 257, 14, 16)
+region = Rect2(145, 256, 14, 16)
 
 [node name="Pause" type="Node2D" unique_id=825054384]
 
@@ -40,7 +40,37 @@ region = Rect2(145, 257, 14, 16)
 offset_left = 360.0
 offset_top = 232.0
 offset_right = 792.0
-offset_bottom = 365.0
+offset_bottom = 368.0
+color = Color(1, 0.8666667, 0.5137255, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect" unique_id=280884338]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -8.0
+offset_right = 424.0
+color = Color(1, 0.8666667, 0.5137255, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="ColorRect" unique_id=557053352]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 8.0
+offset_right = 440.0
+offset_bottom = 128.0
+color = Color(1, 0.8666667, 0.5137255, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="ColorRect" unique_id=1857602451]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 136.0
+offset_right = 424.0
+offset_bottom = 144.0
+color = Color(1, 0.8666667, 0.5137255, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="ColorRect" unique_id=2042571533]
+layout_mode = 0
+offset_left = -8.0
+offset_top = 8.0
+offset_bottom = 128.0
 color = Color(1, 0.8666667, 0.5137255, 1)
 
 [node name="Play" type="TextureButton" parent="." unique_id=1158207441]

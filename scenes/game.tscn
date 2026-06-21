@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://c3tjvqx32efdg"]
 
 [ext_resource type="Script" uid="uid://b6qhus2nxqahs" path="res://scripts/game.gd" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://dsjlykhfs03rn" path="res://scenes/pause.tscn" id="2_yqjtg"]
 
 [node name="Game" type="Node2D" unique_id=2097119406]
 script = ExtResource("1_uwrxv")
 levels = Array[String](["level_1", "level_1"])
+
+[node name="Pause" parent="." unique_id=825054384 instance=ExtResource("2_yqjtg")]
+visible = false

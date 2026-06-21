@@ -16,13 +16,14 @@ enum state {
 }
 
 func _ready() -> void:
+	var pause: Node = get_node("Pause")
+	pause.get_node("Play").pressed.connect(_replay)
+	pause.get_node("Restart").pressed.connect(_restart)
+	pause.get_node("Home").pressed.connect(_home)
+	pause.get_node("Quit").pressed.connect(_quit)
 	_main_menu()
 
 func _process(delta: float) -> void:
-	if pause:
-		_handle_pause()
-
-func _handle_pause() -> void:
 	pass
 
 func _instanciate_new_level(level_path: String) -> void:
@@ -57,13 +58,33 @@ func _play() -> void:
 	_instanciate_new_level(levels[level_index])
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause") and level_instance != null and level_instance.rad <= 0 and level_instance.star_anim == null:
+	if event.is_action_pressed("pause") and level_instance != null:
 		if pause:
 			level_instance.process_mode = Node.PROCESS_MODE_INHERIT
+			get_node("Pause").visible = false
 			pause = false
-		else:
+		elif level_instance.rad <= 0 and level_instance.star_anim == null:
 			level_instance.process_mode = Node.PROCESS_MODE_DISABLED
+			get_node("Pause").visible = true
 			pause = true
 
 func _quit() -> void:
 	get_tree().quit()
+
+func _replay() -> void:
+	if level_instance != null:
+		level_instance.process_mode = Node.PROCESS_MODE_INHERIT
+		get_node("Pause").visible = false
+		pause = false
+
+func _restart() -> void:
+	_instanciate_new_level(levels[level_index])
+	level_instance.process_mode = Node.PROCESS_MODE_INHERIT
+	get_node("Pause").visible = false
+	pause = false
+
+func _home() -> void:
+	_main_menu()
+	level_instance.process_mode = Node.PROCESS_MODE_INHERIT
+	get_node("Pause").visible = false
+	pause = false
