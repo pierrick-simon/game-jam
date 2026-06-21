@@ -11,3 +11,6 @@ func get_jump_input() -> bool:
 
 func get_dash_input() -> bool:
 	return Input.is_action_just_pressed("dash")
+
+func get_pause_input() -> bool:
+	return Input.is_action_just_pressed("pause")

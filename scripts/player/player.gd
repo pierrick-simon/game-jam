@@ -9,6 +9,8 @@ extends CharacterBody2D
 
 @onready var animated_sprite = $AnimatedSprite2D
 
+@export var spawn_point: Vector2 = Vector2(100, 100)
+
 var finished: bool = false
 var can_start: bool = false
 
@@ -52,4 +54,13 @@ func _on_end_npc_has_entered_finish() -> void:
 	finished = true
 
 func _on_level_1_can_start() -> void:
+	can_start = true
+	
+func take_damage() -> void:
+	if not can_start:
+		return
+	can_start = false
+	velocity = Vector2.ZERO
+	global_position = spawn_point
+	await get_tree().create_timer(0.3).timeout
 	can_start = true

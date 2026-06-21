@@ -789,6 +789,7 @@ sources/0 = SubResource("TileSetAtlasSource_lbhrr")
 sources/1 = SubResource("TileSetAtlasSource_iywne")
 
 [node name="Level1" type="Node2D" unique_id=710322680]
+process_mode = 1
 script = ExtResource("1_qxy0u")
 color = Color(1, 0.8666667, 0.5137255, 1)
 

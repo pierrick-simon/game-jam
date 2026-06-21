@@ -51,5 +51,12 @@ func _main_menu():
 func _play() -> void:
 	_instanciate_new_level(levels[level_index])
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause") and level_instance != null:
+		if level_instance.process_mode == Node.PROCESS_MODE_DISABLED:
+			level_instance.process_mode = Node.PROCESS_MODE_INHERIT
+		else:
+			level_instance.process_mode = Node.PROCESS_MODE_DISABLED
+
 func _quit() -> void:
 	get_tree().quit()
