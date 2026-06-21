@@ -71,6 +71,13 @@ func take_damage() -> void:
 func is_touching_water() -> bool:
 	var sprite_y_size = animated_sprite.sprite_frames.get_frame_texture(animated_sprite.animation, 0).get_size().y
 	return animated_sprite.global_position.y + sprite_y_size > tide_controller.get_underwater_y_pos()
-	
+
 func is_fully_underwater() -> bool:
 	return animated_sprite.global_position.y > tide_controller.get_underwater_y_pos()
+
+func get_underwater_percentage() -> float:
+	var underwater_y_pos := tide_controller.get_underwater_y_pos()
+	var player_bottom: float = animated_sprite.global_position.y
+	var sprite_height = animated_sprite.sprite_frames.get_frame_texture(animated_sprite.animation, 0).get_size().y
+	var player_top: float = player_bottom + sprite_height
+	return clampf(inverse_lerp(player_top, player_bottom, underwater_y_pos), 0, 1)
