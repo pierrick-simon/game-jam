@@ -46,7 +46,6 @@ func _handle_resistance(body: CharacterBody2D, underwater_pourcentage: float, de
 		var y_max: float = (velocity_max_air - velocity_max_water) * (1 - underwater_pourcentage) + velocity_max_water
 		if body.velocity.y > y_max:
 			body.velocity.y = y_max
-		print(body.velocity.y)
 
 func update_animation(direction: float, is_dashing: bool):
 	if direction > 0:
