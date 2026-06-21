@@ -2,16 +2,28 @@
 
 [ext_resource type="Texture2D" uid="uid://c8kmv7b1vased" path="res://assets/UI Black Letters.png" id="1_l6cm7"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ekxnf"]
-load_path = "res://.godot/imported/UI Black Letters.png-1ddc190aa28b6bdbe94a22aaba12fb62.ctex"
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_0vvub"]
-atlas = SubResource("CompressedTexture2D_ekxnf")
+atlas = ExtResource("1_l6cm7")
 region = Rect2(1, 208, 14, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_in4dw"]
 atlas = ExtResource("1_l6cm7")
 region = Rect2(1, 224, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6cm7"]
+atlas = ExtResource("1_l6cm7")
+region = Rect2(65, 240, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekxnf"]
+atlas = ExtResource("1_l6cm7")
+region = Rect2(65, 256, 14, 16)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l6cm7"]
+load_path = "res://.godot/imported/crab.png-8c3f0d487c4f55739f26903ac89d0947.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yah27"]
+atlas = SubResource("CompressedTexture2D_l6cm7")
+region = Rect2(38, 88, 19, 8)
 
 [node name="MainMenu" type="Node2D" unique_id=1656498219]
 
@@ -21,10 +33,27 @@ offset_bottom = 648.0
 color = Color(1, 0.8666667, 0.5137255, 1)
 
 [node name="Play" type="TextureButton" parent="." unique_id=953776602]
-offset_left = 368.0
-offset_top = 346.0
-offset_right = 455.0
-offset_bottom = 445.4286
+offset_left = 397.0
+offset_top = 383.0
+offset_right = 484.0
+offset_bottom = 482.4286
 texture_normal = SubResource("AtlasTexture_0vvub")
 texture_pressed = SubResource("AtlasTexture_in4dw")
 stretch_mode = 0
+
+[node name="Quit" type="TextureButton" parent="." unique_id=1727081711]
+offset_left = 655.0
+offset_top = 383.0
+offset_right = 742.0
+offset_bottom = 482.4286
+texture_normal = SubResource("AtlasTexture_l6cm7")
+texture_pressed = SubResource("AtlasTexture_ekxnf")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=96061023]
+offset_left = 480.0
+offset_top = 130.0
+offset_right = 669.0
+offset_bottom = 210.0
+texture = SubResource("AtlasTexture_yah27")
+stretch_mode = 5

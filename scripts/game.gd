@@ -36,7 +36,8 @@ func _close_instances() -> void:
 func _end_level() -> void:
 	level_index += 1
 	if level_index >= levels.size():
-		get_tree().quit()
+		level_index = 0
+		_main_menu()
 		return
 	_instanciate_new_level(levels[level_index])
 
@@ -44,7 +45,11 @@ func _main_menu():
 	_close_instances()
 	main_menu_instance = main_menu_scene.instantiate()
 	main_menu_instance.get_node("Play").pressed.connect(_play)
+	main_menu_instance.get_node("Quit").pressed.connect(_quit)
 	add_child(main_menu_instance)
 
 func _play() -> void:
 	_instanciate_new_level(levels[level_index])
+
+func _quit() -> void:
+	get_tree().quit()
