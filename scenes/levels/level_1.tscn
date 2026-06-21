@@ -18,6 +18,7 @@ shader = ExtResource("3_iav0o")
 shader_parameter/mask_position = Vector2(0, 0)
 shader_parameter/mask_size = Vector2(0, 0)
 shader_parameter/screen_size = Vector2(0, 0)
+shader_parameter/tide_offset = 0.0
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_in4dw"]
 a = Vector2(2522, 0)
@@ -945,10 +946,11 @@ unique_name_in_owner = true
 underwater_background = NodePath("../UnderwaterBackgroundParallax/UnderwaterBackground")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=769163416]
-layer = 10
+layer = 100
 
 [node name="CircleDrawer" type="Node2D" parent="CanvasLayer" unique_id=1253418600]
 unique_name_in_owner = true
+z_index = 100
 script = ExtResource("10_v6ha0")
 
 [node name="Found" type="AudioStreamPlayer" parent="." unique_id=850873888]

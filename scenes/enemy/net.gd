@@ -33,7 +33,7 @@ func _physics_process(_delta: float) -> void:
 			return
 
 	var screen_width = get_viewport_rect().size.x
-	if global_position.x > screen_width + 100 or global_position.x < -100:
+	if global_position.x > get_viewport().get_camera_2d().get_screen_center_position().x + get_viewport_rect().size.x / 2.0 + 100 or global_position.x < get_viewport().get_camera_2d().get_screen_center_position().x - get_viewport_rect().size.x / 2.0 -100:
 		queue_free()
 		
 func take_damage() -> void:
