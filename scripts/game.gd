@@ -58,6 +58,7 @@ func _main_menu():
 	main_menu_instance.get_node("Quit").pressed.connect(_quit)
 	main_menu_instance.get_node("Sounds").toggled.connect(_sounds)
 	main_menu_instance.get_node("Music").toggled.connect(_musics)
+	main_menu_instance.get_node("Restart").pressed.connect(_reset)
 	add_child(main_menu_instance)
 
 func _play() -> void:
@@ -106,3 +107,6 @@ func _sounds(mute_sounds: bool) -> void:
 
 func _musics(mute_musics: bool) -> void:
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Musics"), mute_musics)
+
+func _reset() -> void:
+	level_index = 0
